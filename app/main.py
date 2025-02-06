@@ -4,9 +4,13 @@ import requests
 # Читаем API_KEY из переменных окружения
 API_KEY = os.getenv("API_KEY")
 if not API_KEY:
-    raise ValueError("API_KEY is not set. Please set it as an environment variable.")
+    raise ValueError(
+        "API_KEY is not set. "
+        "Please set it as an environment variable."
+    )
 
 BASE_URL = "http://api.weatherapi.com/v1/current.json"
+
 
 def get_weather() -> None:
     print("Performing request to Weather API for city Paris...")
@@ -23,7 +27,9 @@ def get_weather() -> None:
         localtime = data.get("location", {}).get("localtime", "Unknown time")
         temp_c = data.get("current", {}).get("temp_c", "N/A")
         condition = (
-            data.get("current", {}).get("condition", {}).get("text", "Unknown condition")
+            data.get("current", {})
+            .get("condition", {})
+            .get("text", "Unknown condition")
         )
 
         print(
@@ -32,6 +38,7 @@ def get_weather() -> None:
         )
     except requests.exceptions.RequestException as e:
         print(f"Error fetching weather data: {e}")
+
 
 if __name__ == "__main__":
     get_weather()
