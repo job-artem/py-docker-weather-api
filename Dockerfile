@@ -1,9 +1,9 @@
 FROM python:alpine3.21
 LABEL maintainer="job.artem.2019@gmail.com"
 
-ENV PYTHONBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
-WORKDIR app/
+WORKDIR /app
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
